@@ -12,45 +12,45 @@ _**Student Activities Registration**_ merupakan sebuah aplikasi untuk _student_ 
 
 Pada _final project_ ini, kalian di berikan beberapa _async function_ dengan penamaan sesuai dengan kegunaannya, antara lain:
 
--   `studentActivitiesRegistration` : Merupakan sebuah **_function_ utama** yang akan **memanggil _function_ lainnya** untuk mendaftarkan atau menghapus data student.
--   `getStudentActivities` : Merupakan sebuah _function_ untuk **mendapatkan data UKM** apa saja yang tersedia.
--   `addStudent` : Merupakan sebuah _function_ untuk **mendaftarkan data student**.
--   `deleteStudent` : Merupakan sebuah _function_ untuk **menghapus data student**.
+- `studentActivitiesRegistration` : Merupakan sebuah **_function_ utama** yang akan **memanggil _function_ lainnya** untuk mendaftarkan atau menghapus data student.
+- `getStudentActivities` : Merupakan sebuah _function_ untuk **mendapatkan data UKM** apa saja yang tersedia.
+- `addStudent` : Merupakan sebuah _function_ untuk **mendaftarkan data student**.
+- `deleteStudent` : Merupakan sebuah _function_ untuk **menghapus data student**.
 
 Selain itu kalian diberikan juga sebuah file `json-server` dengan nama `student-activities-db.json` dalam folder `/server` sebagai _server_ kalian yang memiliki beberapa _end-points_, antara lain:
 
--   GET `/students` : Untuk mendapatkan data _student_.
--   POST `/students` : Untuk mendaftarkan data _student_.
--   DELETE `/students/id` : Untuk menghapus data _student_ berdasarkan `id` _student_.
--   GET `/activities` : Untuk mendapatkan data UKM.
+- GET `/students` : Untuk mendapatkan data _student_.
+- POST `/students` : Untuk mendaftarkan data _student_.
+- DELETE `/students/id` : Untuk menghapus data _student_ berdasarkan `id` _student_.
+- GET `/activities` : Untuk mendapatkan data UKM.
 
 > Server dapat di jalankan menggunakan command `npm run start:server` dan akan berjalan pada `http://localhost:3001`.
 
 Terdapat beberapa format input terminal yang **WAJIB** kalian ikuti, antara lain:
 
--   **Add Student**
+- **Add Student**
 
-    ```txt
-    node main.js METHOD "Name" "Day"
-    ```
+  ```txt
+  node main.js METHOD "Name" "Day"
+  ```
 
-    contoh
+  contoh
 
-    ```bash
-    node main.js "CREATE" "John Doe" "Sunday"
-    ```
+  ```bash
+  node main.js "CREATE" "John Doe" "Sunday"
+  ```
 
--   **Delete Student**
+- **Delete Student**
 
-    ```txt
-    node main.js METHOD "id"
-    ```
+  ```txt
+  node main.js METHOD "id"
+  ```
 
-    contoh
+  contoh
 
-    ```bash
-    node main.js "DELETE" "2"
-    ```
+  ```bash
+  node main.js "DELETE" "2"
+  ```
 
 Terdapat juga _function_ `process_argv` yang akan menerima _input_ yang kalian masukan pada terminal. _Function_ ini sendiri akan memanggil _function_ `studentActivitiesRegistration` yang kalian gunakan.
 
@@ -143,67 +143,67 @@ _Value_ parameter `data` pada _function_ ini berupa `array` yang memiliki _eleme
 
 Dibawah ini ketentuan dalam pengerjaan pada function `studentActivitiesRegistration`:
 
--   Diasumsikan `METHOD` yang diterima **hanya** berupa `CREATE` atau `DELETE` (**dalam huruf besar/kapital**)
--   Jika `METHOD` yang diterima bernilai `CREATE`, sistem akan **memproses pendaftaran data student**.
--   Jika `METHOD` yang diterima bernilai `DELETE`, sistem akan **memproses penghapusan data student**.
+- Diasumsikan `METHOD` yang diterima **hanya** berupa `CREATE` atau `DELETE` (**dalam huruf besar/kapital**)
+- Jika `METHOD` yang diterima bernilai `CREATE`, sistem akan **memproses pendaftaran data student**.
+- Jika `METHOD` yang diterima bernilai `DELETE`, sistem akan **memproses penghapusan data student**.
 
 #### Test Case
 
--   **ADD**:
+- **ADD**:
 
-    Input:
+  Input:
 
-    ```js
-    // studentActivitiesRegistration(data);
-    studentActivitiesRegistration(["CREATE", "Anshori Atmodiredjo", "Sunday"]);
-    ```
+  ```js
+  // studentActivitiesRegistration(data);
+  studentActivitiesRegistration(["CREATE", "Anshori Atmodiredjo", "Sunday"]);
+  ```
 
-    Expected Output / Behavior:
+  Expected Output / Behavior:
 
-    ```js
-    {
-        id: 2,
-        name: 'Anshori Atmodiredjo',
-        activities: [
-            { name: 'Mahitala', desc: 'Mahasiswa Pecinta Alam' },
-            { name: 'Korgala', desc: 'Korps Tenaga Sukarela' }
-        ]
-    }
-    ```
+  ```js
+  {
+      id: 2,
+      name: 'Anshori Atmodiredjo',
+      activities: [
+          { name: 'Mahitala', desc: 'Mahasiswa Pecinta Alam' },
+          { name: 'Korgala', desc: 'Korps Tenaga Sukarela' }
+      ]
+  }
+  ```
 
-    Explanation:
+  Explanation:
 
-    ```txt
-    `METHOD` yang diterima bernilai `CREATE`, sistem akan memproses pendaftaran data student.
-    `name` yang diterima berupa 'Anshori Atmodiredjo'.
-    `day` yang diterima berupa 'Sunday', sehingga akan mencari UKM apa saja yang tersedia di hari tersebut.
-    Berdasarkan data yang diterima, UKM yang tersedia di hari tersebut adalah 'Mahitala' dan 'Korgala'
-    ```
+  ```txt
+  `METHOD` yang diterima bernilai `CREATE`, sistem akan memproses pendaftaran data student.
+  `name` yang diterima berupa 'Anshori Atmodiredjo'.
+  `day` yang diterima berupa 'Sunday', sehingga akan mencari UKM apa saja yang tersedia di hari tersebut.
+  Berdasarkan data yang diterima, UKM yang tersedia di hari tersebut adalah 'Mahitala' dan 'Korgala'
+  ```
 
--   **DELETE**:
+- **DELETE**:
 
-    Input:
+  Input:
 
-    ```js
-    // studentActivitiesRegistration(data);
-    studentActivitiesRegistration(["DELETE", "2"]);
-    ```
+  ```js
+  // studentActivitiesRegistration(data);
+  studentActivitiesRegistration(["DELETE", "2"]);
+  ```
 
-    Expected Output / Behavior:
+  Expected Output / Behavior:
 
-    ```js
-    {
-        message: "Successfully deleted student data with id 2";
-    }
-    ```
+  ```js
+  {
+    message: "Successfully deleted student data with id 2";
+  }
+  ```
 
-    Explanation:
+  Explanation:
 
-    ```txt
-    `METHOD` yang diterima bernilai `DELETE`, sistem akan memproses penghapusan data student.
-    `id` yang diterima bernilai '2'.
-    Sehingga akan menghapus data student pada database dengan `id` yang diterima dan menampilkan pesan sesuai template.
-    ```
+  ```txt
+  `METHOD` yang diterima bernilai `DELETE`, sistem akan memproses penghapusan data student.
+  `id` yang diterima bernilai '2'.
+  Sehingga akan menghapus data student pada database dengan `id` yang diterima dan menampilkan pesan sesuai template.
+  ```
 
 ### `addStudent`
 
@@ -214,8 +214,8 @@ _Function_ `addStudent` akan menerima sebuah parameter berupa `name` dan `day` d
 | _name_       | string           |
 | _activities_ | array of objects |
 
--   `name`: merupakan sama _student_ yang diterima pada parameter.
--   `activities`: merupakan data UKM apa saja yang dapat diikuti oleh _student_ berdasarkan `day` yang diterima dari paramter.
+- `name`: merupakan sama _student_ yang diterima pada parameter.
+- `activities`: merupakan data UKM apa saja yang dapat diikuti oleh _student_ berdasarkan `day` yang diterima dari paramter.
 
 Kalian dapat menggunakan function `getStudentActivities` untuk mendapatkan data UKM yang terdaftar, lalu membandingkan hari yang diajukan student dengan hari yang tersedia dari masing-masing UKM. Yang perlu di perhatikan adalah setiap data dari UKM yang dapat diikuti oleh student dalam `object` yang memiliki _key_ berupa `name` dan `desc` (**`id` dan `days` tidak disertakan**).
 
@@ -279,9 +279,10 @@ Expected Output / Behavior:
 
 ```js
 {
-    message: "Successfully deleted student data with id 2";
+  message: "Successfully deleted student data with id 2";
 }
 ```
+
 Explanation:
 
 ```txt
