@@ -8,8 +8,7 @@ async function process_argv() {
 
 async function getStudentActivities() {
   // * Hit API GET activities
-  let url = "http://localhost:3001/activities";
-
+  const url = "http://localhost:3001/activities";
   const response = await fetch(url, {
     method: "GET",
     headers: {
@@ -17,29 +16,28 @@ async function getStudentActivities() {
     },
   });
 
-  let result = response.json();
-
+  const result = response.json();
   return result;
 }
 
 async function studentActivitiesRegistration(data) {
-  let isArray = Array.isArray(data);
+  const isArray = Array.isArray(data);
 
   // * Check is array
   if (isArray) {
     if (data.length > 0) {
-      // * If request is CREATE
-      if (data[0] == "CREATE") {
-        let name = data[1];
-        let day = data[2];
+      const method = data[0];
 
+      // * If method is CREATE
+      if (method == "CREATE") {
+        const name = data[1];
+        const day = data[2];
         return await addStudent(name, day);
       }
 
-      // * If request is DELETE
-      else if (data[0] == "DELETE") {
-        let id = data[1];
-
+      // * If method is DELETE
+      else if (method == "DELETE") {
+        const id = data[1];
         return await deleteStudent(id);
       }
     }
@@ -48,8 +46,8 @@ async function studentActivitiesRegistration(data) {
 
 async function addStudent(name, day) {
   // * Get activity by day
+  const activityList = await getStudentActivities();
   let activity = [];
-  let activityList = await getStudentActivities();
 
   activityList.forEach((row) => {
     let days = row.days;
@@ -72,12 +70,11 @@ async function addStudent(name, day) {
   });
 
   // * Hit API POST students
-  let data = {
+  const url = "http://localhost:3001/students";
+  const data = {
     name: name,
     activities: activity,
   };
-
-  let url = "http://localhost:3001/students";
 
   const response = await fetch(url, {
     method: "POST",
@@ -87,15 +84,13 @@ async function addStudent(name, day) {
     },
   });
 
-  let result = response.json();
-
+  const result = response.json();
   return result;
 }
 
 async function deleteStudent(id) {
   // * Hit API DELETE students
-  let url = "http://localhost:3001/students/" + id;
-
+  const url = "http://localhost:3001/students/" + id;
   const response = await fetch(url, {
     method: "DELETE",
     headers: {
@@ -103,8 +98,7 @@ async function deleteStudent(id) {
     },
   });
 
-  let result = response.json();
-
+  const result = response.json();
   return result;
 }
 
